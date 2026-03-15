@@ -8,41 +8,48 @@ $file = "dataset/poster_data.json";
 
 echo "Reading posters...<br>";
 
-$json = file_get_contents($file);
-$data = json_decode($json, true);
+$data = json_decode(
+    file_get_contents($file),
+    true
+);
+
+$stmt = $conn->prepare(
+"UPDATE movies
+ SET poster=?
+ WHERE movie_id=?"
+);
 
 $count = 0;
 
-$stmt = $conn->prepare(
-    "UPDATE movies
-     SET poster=?
-     WHERE movie_id=?"
-);
+foreach ($data as $item)
+{
 
-foreach ($data as $movie) {
+    if (!isset($item['id'])) continue;
 
-    $id = $movie['id'] ?? 0;
+    $movie_id = $item['id'];
 
-    if (!isset($movie['posters'][0]['file_path'])) {
+    if (!isset($item['backdrops'][0]['file_path']))
         continue;
-    }
 
-    $poster = $movie['posters'][0]['file_path'];
+    $poster =
+    $item['backdrops'][0]['file_path'];
 
     $stmt->bind_param(
         "si",
         $poster,
-        $id
+        $movie_id
     );
 
     $stmt->execute();
 
     $count++;
 
-    if ($count % 100 == 0) {
-        echo "Updated $count <br>";
+    if ($count % 50 == 0)
+    {
+        echo "Updated $count<br>";
         flush();
     }
+
 }
 
 echo "Done posters";

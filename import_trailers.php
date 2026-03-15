@@ -8,8 +8,10 @@ $file = "dataset/trailer_data.json";
 
 echo "Reading trailers...<br>";
 
-$json = file_get_contents($file);
-$data = json_decode($json, true);
+$data = json_decode(
+    file_get_contents($file),
+    true
+);
 
 $count = 0;
 
@@ -19,16 +21,31 @@ $stmt = $conn->prepare(
      WHERE movie_id=?"
 );
 
-foreach ($data as $movie) {
+foreach ($data as $item) {
 
-    $id = $movie['id'] ?? 0;
+    if (!isset($item['id'])) continue;
 
-    if (!isset($movie['results'][0]['key'])) {
-        continue;
+    $id = $item['id'];
+
+    if (!isset($item['results'])) continue;
+
+    $key = "";
+    $site = "";
+
+    foreach ($item['results'] as $r) {
+
+        if (
+            isset($r['site']) &&
+            $r['site'] == "YouTube" &&
+            isset($r['key'])
+        ) {
+            $key = $r['key'];
+            $site = $r['site'];
+            break;
+        }
     }
 
-    $key = $movie['results'][0]['key'];
-    $site = $movie['results'][0]['site'];
+    if ($key == "") continue;
 
     $stmt->bind_param(
         "ssi",
@@ -41,7 +58,7 @@ foreach ($data as $movie) {
 
     $count++;
 
-    if ($count % 100 == 0) {
+    if ($count % 50 == 0) {
         echo "Updated $count <br>";
         flush();
     }
