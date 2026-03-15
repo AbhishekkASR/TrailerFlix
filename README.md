@@ -1,135 +1,164 @@
-# TrailerFlix 🎬
+# 🎬 TrailerFlix – Streaming Platform
 
-TrailerFlix is a movie trailer streaming web app built using **PHP, MySQL, HTML, CSS and JavaScript**.
-The project shows movies in a YouTube-like layout using data imported from the **TMDB dataset (JSON files)**.
+TrailerFlix is a full-stack movie trailer streaming platform built using **PHP, MySQL, HTML, CSS, and JavaScript**.  
+The project provides a modern OTT-style UI with trailer playback, search functionality, user authentication, and online deployment.
 
-This project was created as a full-stack practice project to learn how to work with large datasets, database integration, and dynamic UI rendering using PHP.
+This project was developed as a full-stack web application to simulate a real streaming platform like YouTube / Netflix.
+
+---
+## 🚀 Live Demo
+
+▶️ **Live Preview:**  
+[Open TrailerFlix Streaming Platform](https://trailerflix.infinityfree.me/)
 
 ---
 
 ## ✨ Features
 
-* Login / Register system
-* Admin upload panel
-* Import large movie dataset from JSON
-* Poster + Trailer integration
-* YouTube-style homepage grid
-* Embedded video player
-* MySQL database storage
-* Handles large dataset (1000+ movies)
+- 🔐 User Login & Registration system
+- 🔍 Movie search by title
+- 🎞 Trailer streaming using YouTube keys
+- 🖼 TMDB poster integration
+- ⚡ Fast dashboard with grid layout
+- 🎨 Premium glowing UI design
+- 📱 Responsive layout
+- 🔄 Infinite movie loading support
+- 🔒 Session based authentication
+- 🚪 Logout & session destroy
+- 🌐 Online hosting (InfinityFree)
 
 ---
 
-## 📁 Project Structure
+## 🛠 Tech Stack
 
+Frontend:
+- HTML5
+- CSS3
+- JavaScript
+
+Backend:
+- PHP
+- MySQL
+
+Database Source:
+- TMDB Dataset (JSON)
+
+Hosting:
+- InfinityFree (PHP + MySQL hosting)
+
+Version Control:
+- Git & GitHub
+
+---
+
+## 📂 Project Structure
 TrailerFlix/
-
-config/ → database connection
-css/ → styles
-dataset/ → TMDB json files (not included)
-importer.php → import movies
-import_posters.php → import posters
-import_trailers.php → import trailers
-
-login.php
-register.php
-admin.php
-upload.php
-home.php
-play.php
-dashboard.php
-
-README.md
-
----
-
-## 📦 Dataset
-
-Dataset used: TMDB movie dataset
-
-Files used:
-
-main_movies.json
-poster_data.json
-trailer_data.json
-
-Poster URL format:
-
-https://image.tmdb.org/t/p/w500/{poster_path}
-
-Trailer URL format:
-
-https://www.youtube.com/embed/{video_key}
-
-Dataset not included in repo because of large size.
+│
+├── dashboard.php
+├── login.php
+├── logout.php
+├── register.php
+├── play.php
+├── index.php
+│
+├── config/
+│ └── db.php
+│
+├── css/
+│ └── style.css
+│
+├── js/
+│
+└── README.md 
 
 ---
 
-## ⚙️ Setup
+## 🗄 Database
 
-Clone repo
+Tables used:
 
-git clone https://github.com/AbhishekkASR/TrailerFlix.git
+- users
+- movies
+- trailers
+- posters
 
-Move to XAMPP
-
-C:\xampp\htdocs\TrailerFlix
-
-Start XAMPP
-
-Apache → Start
-MySQL → Start
-
-Create database
-
-trailerflix
-
-Create table
-
-CREATE TABLE movies (
-movie_id INT,
-title TEXT,
-poster TEXT,
-video_key TEXT,
-site TEXT,
-overview TEXT
-);
-
-Import data
-
-http://localhost/TrailerFlix/importer.php
-http://localhost/TrailerFlix/import_posters.php
-http://localhost/TrailerFlix/import_trailers.php
-
-Run project
-
-http://localhost/TrailerFlix/home.php
+Data imported from TMDB JSON dataset.
 
 ---
 
-## 🛠 Tech Used
+## ⚙️ How to Run Locally
 
-PHP
-MySQL
-HTML
-CSS
-JavaScript
-TMDB Dataset
-XAMPP
+1. Install XAMPP
+2. Move project to: htdocs/TrailerFlix
+    
+4. Start Apache & MySQL
+
+5. Import database in phpMyAdmin
+
+6. Update config/db.php
+
+7. Open: http://localhost/TrailerFlix
 
 ---
 
-## 📌 Notes
+## 🌍 Online Deployment
 
-Dataset is large so it is not uploaded to GitHub.
-Only scripts are included to import data.
+Project deployed on:
 
-This project is for learning / portfolio / practice.
+- InfinityFree Hosting
+- MySQL Database
+- PHP Server
+
+Steps used:
+
+- Export DB from phpMyAdmin
+- Upload files to htdocs
+- Update db.php
+- Import SQL online
+
+---
+
+## 🎯 Purpose of Project
+
+This project was created to practice:
+
+- Full-stack web development
+- Database integration
+- UI design
+- API / dataset usage
+- Hosting deployment
+- GitHub project management
 
 ---
 
 ## 👨‍💻 Author
 
-Abhishek Singh
-Manipal University Jaipur
-GitHub: https://github.com/AbhishekkASR
+Abhishek Singh  
+B.Tech Computer & Communication Engineering  
+Manipal University Jaipur  
+
+GitHub:
+https://github.com/AbhishekkASR
+
+Portfolio:
+https://abhishekkasr.github.io/
+
+---
+
+## ⭐ Future Improvements
+
+- Live search
+- Video preview on hover
+- Admin panel
+- Movie categories
+- Watch history
+- Likes / favorites
+- Better player UI
+
+---
+
+## 📜 License
+
+This project is for educational purposes.
+
+
